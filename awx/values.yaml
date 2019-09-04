@@ -20,27 +20,27 @@ awx_task:
 # AWX config
 awx_secret_key: awxsecret
 default_admin_user: admin
-default_admin_password: mae^l2do3aeHae5e
+default_admin_password: password
 
 
 deployment:
   annotations: {}
 service:
-  internalPort: 8052
-  externalPort: 8052
+  internalPort: 8032
+  externalPort: 8032
 ingress:
   enabled: true
   # Used to create an Ingress record.
   hosts:
-    - atlasawx.aws.k8s.agency
+    - test.awx.sec.labs
   annotations:
     kubernetes.io/ingress.class: nginx
     kubernetes.io/tls-acme: "true"
   tls:
   #Secrets must be manually created in the namespace.
-      - secretName: chart-awx-tls
+      - secretName: chart-test-tls
         hosts:
-          - atlasawx.aws.k8s.agency
+          - test.awx.sec.labs
 
 
 # Chart values https://github.com/helm/charts/blob/master/stable/memcached/values.yaml
@@ -76,7 +76,7 @@ postgresql:
     repository: bitnami/postgresql
     tag: 9.6
   postgresqlUsername: postgres
-  postgresqlPassword: Nk8kqWts
+  postgresqlPassword: password
   postgresqlDatabase: awx
   persistence:
     enabled: true
